@@ -1,0 +1,15 @@
+remote_theme: ddc-java/ddc-day
+
+title: Codebreaker
+description: A code-breaking solitaire puzzle game.
+
+author:
+  name: Nick Bennett
+  copyright: false
+  email: nick@nickbenn.com
+
+page_navigator:
+  enabled: true
+
+titles_from_headings:
+  enabled: false
