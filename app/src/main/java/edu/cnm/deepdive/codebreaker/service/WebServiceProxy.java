@@ -2,8 +2,10 @@ package edu.cnm.deepdive.codebreaker.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import edu.cnm.deepdive.codebreaker.BuildConfig;
 import edu.cnm.deepdive.codebreaker.model.Game;
 import edu.cnm.deepdive.codebreaker.model.Guess;
+import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
@@ -17,10 +19,10 @@ import retrofit2.http.Path;
 public interface WebServiceProxy {
 
   @POST("codes")
-  Call<Game> startGame(@Body Game game);
+  Single<Game> startGame(@Body Game game);
 
   @POST("codes/{gameId}/guesses")
-  Call<Guess> submitGuess(@Body Guess guess, @Path("gameId") String gameId);
+  Single<Guess> submitGuess(@Body Guess guess, @Path("gameId") String gameId);
 
   static WebServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;
@@ -41,7 +43,7 @@ public interface WebServiceProxy {
           .addInterceptor(interceptor)
           .build();
       Retrofit retrofit = new Retrofit.Builder()
-          .baseUrl("https://ddc-java.services/codebreaker/")
+          .baseUrl(BuildConfig.BASE_URL)
           .addConverterFactory(GsonConverterFactory.create(gson))
           .client(client)
           .build();
