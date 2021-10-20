@@ -22,6 +22,7 @@ allprojects {
         google()
         mavenCentral()
         //noinspection JcenterRepositoryObsolete
+        //noinspection JCenterRepository
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
