@@ -11,7 +11,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import edu.cnm.deepdive.codebreaker.controller.databinding.ActivityMainBinding;
+import edu.cnm.deepdive.codebreaker.R;
+import edu.cnm.deepdive.codebreaker.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
