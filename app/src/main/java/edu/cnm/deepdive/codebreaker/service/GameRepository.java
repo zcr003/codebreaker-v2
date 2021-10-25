@@ -39,6 +39,7 @@ public class GameRepository {
         .flatMap((guess) -> proxy.submitGuess(guess, game.getId()))
         .map((guess) -> {
           game.getGuesses().add(guess);
+          game.setSolved(guess.isSolution());
           return game;
         })
         .subscribeOn(Schedulers.io());
