@@ -23,12 +23,34 @@ public class MainViewModel extends AndroidViewModel {
     game = new MutableLiveData<>();
     throwable = new MutableLiveData<>();
     pending = new CompositeDisposable();
+    startGame("ABCDEF", 3);
+  }
+
+  public LiveData<Game> getGame() {
+    return game;
+  }
+
+  public LiveData<Throwable> getThrowable() {
+    return throwable;
   }
 
   public void startGame(String pool, int length) {
+    throwable.postValue(null);
     pending.add(
         repository
             .startGame(pool, length)
+            .subscribe(
+                game::postValue,
+                this::postThrowable
+            )
+    );
+  }
+
+  public void submitGuess(String text) {
+    throwable.postValue(null);
+    pending.add(
+        repository
+            .submitGuess(game.getValue(), text)
             .subscribe(
                 game::postValue,
                 this::postThrowable
