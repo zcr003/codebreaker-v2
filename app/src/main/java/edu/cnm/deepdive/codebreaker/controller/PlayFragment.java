@@ -1,7 +1,6 @@
 package edu.cnm.deepdive.codebreaker.controller;
 
 import android.os.Bundle;
-import android.os.TokenWatcher;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import edu.cnm.deepdive.codebreaker.R;
 import edu.cnm.deepdive.codebreaker.adapter.GuessItemAdapter;
 import edu.cnm.deepdive.codebreaker.databinding.FragmentPlayBinding;
-import edu.cnm.deepdive.codebreaker.model.Game;
+import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.viewmodel.MainViewModel;
 
 public class PlayFragment extends Fragment implements InputFilter {
