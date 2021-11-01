@@ -1,13 +1,9 @@
 package edu.cnm.deepdive.codebreaker.service;
 
-import androidx.annotation.NonNull;
 import edu.cnm.deepdive.codebreaker.model.Game;
 import edu.cnm.deepdive.codebreaker.model.Guess;
 import io.reactivex.Single;
-import io.reactivex.SingleSource;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import java.util.concurrent.Callable;
 
 public class GameRepository {
 
@@ -36,7 +32,7 @@ public class GameRepository {
           guess.setText(text);
           return guess;
         })
-        .flatMap((guess) -> proxy.submitGuess(guess, game.getId()))
+        .flatMap((guess) -> proxy.submitGuess(guess, game.getServiceKey()))
         .map((guess) -> {
           game.getGuesses().add(guess);
           game.setSolved(guess.isSolution());
