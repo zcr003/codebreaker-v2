@@ -49,6 +49,7 @@ public class PlayFragment extends Fragment implements InputFilter {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     viewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+    getLifecycle().addObserver(viewModel);
     viewModel.getThrowable().observe(getViewLifecycleOwner(), (throwable) -> {
       if (throwable != null) {
         Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();

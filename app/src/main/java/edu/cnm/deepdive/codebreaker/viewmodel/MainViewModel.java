@@ -4,16 +4,25 @@ import android.app.Application;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Lifecycle.Event;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
+import edu.cnm.deepdive.codebreaker.model.view.GameSummary;
 import edu.cnm.deepdive.codebreaker.service.GameRepository;
 import io.reactivex.disposables.CompositeDisposable;
+import java.util.List;
 
-public class MainViewModel extends AndroidViewModel {
+public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final GameRepository repository;
   private final MutableLiveData<Game> game;
+//  private final LiveData<List<GameSummary>> scores;
+//  private final MutableLiveData<Integer> poolSize;
+//  private final MutableLiveData<Integer> length;
+//  private final MutableLiveData<Boolean> orderByTotalTime;
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
 
@@ -56,6 +65,11 @@ public class MainViewModel extends AndroidViewModel {
                 this::postThrowable
             )
     );
+  }
+
+  @OnLifecycleEvent(Event.ON_STOP)
+  private void clearPending() {
+    pending.clear();
   }
 
   private void postThrowable(Throwable throwable) {
