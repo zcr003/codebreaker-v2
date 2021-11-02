@@ -12,9 +12,9 @@
     tools:layout="@layout/fragment_play"/>
 
   <fragment
-    android:id="@+id/nav_gallery"
-    android:label="@string/menu_gallery"
-    android:name="edu.cnm.deepdive.codebreaker.controller.ui.gallery.GalleryFragment"
+    android:id="@+id/nav_scores"
+    android:label="@string/menu_scores"
+    android:name="edu.cnm.deepdive.codebreaker.controller.ScoresFragment"
     tools:layout="@layout/fragment_gallery"/>
 
   <fragment

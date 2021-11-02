@@ -15,18 +15,14 @@ import edu.cnm.deepdive.codebreaker.service.GameRepository;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 
-public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
+public class PlayViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final GameRepository repository;
   private final MutableLiveData<Game> game;
-//  private final LiveData<List<GameSummary>> scores;
-//  private final MutableLiveData<Integer> poolSize;
-//  private final MutableLiveData<Integer> length;
-//  private final MutableLiveData<Boolean> orderByTotalTime;
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
 
-  public MainViewModel(@NonNull Application application) {
+  public PlayViewModel(@NonNull Application application) {
     super(application);
     repository = new GameRepository();
     game = new MutableLiveData<>();

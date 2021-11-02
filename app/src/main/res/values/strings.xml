@@ -10,7 +10,7 @@
   <string name="action_settings">Settings</string>
 
   <string name="menu_play">Play</string>
-  <string name="menu_gallery">Gallery</string>
+  <string name="menu_scores">Top scores</string>
   <string name="menu_slideshow">Slideshow</string>
   <string name="submit">Submit</string>
   <string name="guess_hint">Text of guess</string>

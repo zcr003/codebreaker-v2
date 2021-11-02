@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,13 +18,13 @@ import edu.cnm.deepdive.codebreaker.R;
 import edu.cnm.deepdive.codebreaker.adapter.GuessItemAdapter;
 import edu.cnm.deepdive.codebreaker.databinding.FragmentPlayBinding;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
-import edu.cnm.deepdive.codebreaker.viewmodel.MainViewModel;
+import edu.cnm.deepdive.codebreaker.viewmodel.PlayViewModel;
 
 public class PlayFragment extends Fragment implements InputFilter {
 
   private static final String ILLEGAL_CHARACTERS_FORMAT = "[^%s]+";
 
-  private MainViewModel viewModel;
+  private PlayViewModel viewModel;
   private FragmentPlayBinding binding;
   private int codeLength;
   private String pool;
@@ -50,7 +49,7 @@ public class PlayFragment extends Fragment implements InputFilter {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     //noinspection ConstantConditions
-    viewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+    viewModel = new ViewModelProvider(getActivity()).get(PlayViewModel.class);
     getLifecycle().addObserver(viewModel);
     viewModel.getThrowable().observe(getViewLifecycleOwner(), this::displayError);
     viewModel.getGame().observe(getViewLifecycleOwner(), this::update);
