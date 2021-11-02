@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import com.google.android.material.snackbar.Snackbar;
 import edu.cnm.deepdive.codebreaker.R;
 import edu.cnm.deepdive.codebreaker.adapter.GuessItemAdapter;
 import edu.cnm.deepdive.codebreaker.databinding.FragmentPlayBinding;
@@ -48,13 +49,10 @@ public class PlayFragment extends Fragment implements InputFilter {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    //noinspection ConstantConditions
     viewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
     getLifecycle().addObserver(viewModel);
-    viewModel.getThrowable().observe(getViewLifecycleOwner(), (throwable) -> {
-      if (throwable != null) {
-        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-      }
-    });
+    viewModel.getThrowable().observe(getViewLifecycleOwner(), this::displayError);
     viewModel.getGame().observe(getViewLifecycleOwner(), this::update);
   }
 
@@ -114,6 +112,16 @@ public class PlayFragment extends Fragment implements InputFilter {
 
   private void checkSubmitConditions(int length) {
     binding.submit.setEnabled(length == codeLength);
+  }
+
+  private void displayError(Throwable throwable) {
+    if (throwable != null) {
+      Snackbar snackbar = Snackbar.make(binding.getRoot(),
+          getString(R.string.play_error_message, throwable.getMessage()),
+          Snackbar.LENGTH_INDEFINITE);
+      snackbar.setAction(R.string.error_dismiss, (v) -> snackbar.dismiss());
+      snackbar.show();
+    }
   }
 
 }

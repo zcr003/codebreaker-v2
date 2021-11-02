@@ -1,4 +1,5 @@
 <resources>
+
   <string name="app_name">Codebreaker</string>
   <string name="title_activity_main">MainActivity</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -14,4 +15,8 @@
   <string name="submit">Submit</string>
   <string name="guess_hint">Text of guess</string>
   <string name="new_game">New game</string>
+
+  <string name="play_error_message">Unable to process request. (%s)</string>
+  <string name="error_dismiss">Dismiss</string>
+
 </resources>
