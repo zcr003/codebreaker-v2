@@ -18,6 +18,7 @@ android {
 //    buildToolsVersion "31.0.0"
 
     defaultConfig {
+
         applicationId "edu.cnm.deepdive.codebreaker"
         minSdkVersion 26
         targetSdkVersion 31
@@ -27,6 +28,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField 'String', 'BASE_URL', quoted(getLocalProperty('base_url'))
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        'room.schemaLocation': "$projectDir/schemas".toString()
+                ]
+            }
+        }
+
     }
 
     buildTypes {
