@@ -22,7 +22,6 @@
       android:theme="@style/Theme.Codebreaker.NoActionBar">
 
       <intent-filter>
-<!--        This element declares that this activity is the default (main) activity.-->
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
