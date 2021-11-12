@@ -40,11 +40,13 @@ public class LoginActivity extends AppCompatActivity {
 
   private void handleAccount(GoogleSignInAccount account) {
     if (account != null) {
-      // TODO Switch to main activity.
+      Intent intent = new Intent(this, MainActivity.class)
+          .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(intent);
     } else if (silent) {
       silent = false;
       binding = ActivityLoginBinding.inflate(getLayoutInflater());
-      // TODO Attach listener to login button.
+      binding.signIn.setOnClickListener((v) -> viewModel.startSignIn(launcher));
       setContentView(binding.getRoot());
     }
   }

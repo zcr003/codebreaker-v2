@@ -19,5 +19,6 @@
   <string name="play_error_message">Unable to process request. (%s)</string>
   <string name="error_dismiss">Dismiss</string>
   <string name="login_failure_message">Unable to sign in with the provided credentials.</string>
+  <string name="sign_out">Sign out</string>
 
 </resources>
