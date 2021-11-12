@@ -15,7 +15,6 @@ import edu.cnm.deepdive.codebreaker.BuildConfig;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
-import io.reactivex.SingleOnSubscribe;
 import io.reactivex.schedulers.Schedulers;
 
 public class GoogleSignInRepository {
@@ -33,7 +32,7 @@ public class GoogleSignInRepository {
         .requestEmail()
         .requestId()
         .requestProfile()
-//        .requestIdToken(BuildConfig.CLIENT_ID)
+        .requestIdToken(BuildConfig.CLIENT_ID)
         .build();
     client = GoogleSignIn.getClient(context, options);
   }
