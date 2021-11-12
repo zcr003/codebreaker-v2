@@ -87,10 +87,8 @@ public class GoogleSignInRepository {
         .create((emitter) ->
             client
                 .signOut()
-                .addOnCompleteListener((ignored) -> {
-                  setAccount(null);
-                  emitter.onComplete();
-                })
+                .addOnSuccessListener((ignored) -> emitter.onComplete())
+                .addOnCompleteListener((ignored) -> setAccount(null))
                 .addOnFailureListener(emitter::onError)
         )
         .subscribeOn(Schedulers.io());
