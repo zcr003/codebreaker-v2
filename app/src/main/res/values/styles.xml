@@ -13,4 +13,14 @@
     <item name="android:includeFontPadding">false</item>
   </style>
 
+  <style name="GuessItem">
+    <item name="android:textSize">@dimen/base_emoji_size</item>
+    <item name="android:includeFontPadding">false</item>
+  </style>
+
+  <style name="MatchCount">
+    <item name="android:textSize">@dimen/match_count_size</item>
+    <item name="android:includeFontPadding">false</item>
+  </style>
+
 </resources>
