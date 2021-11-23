@@ -27,4 +27,23 @@
   <string name="pool_size_pref_key">pool_size_pref</string>
   <string name="pool_size_pref_title">Pool size</string>
 
+  <string-array name="emojis">
+    <item>&#x1f600;</item> <!-- grinning face -->
+    <item>&#x1f922;</item> <!-- nauseated face -->
+    <item>&#x1f608;</item> <!-- smiling face with horns -->
+    <item>&#x1f47D;</item> <!-- alien -->
+    <item>&#x1f63c;</item> <!-- cat with wry smile -->
+    <item>&#x1f418;</item> <!-- raccoon face -->
+    <item>&#x1f984;</item> <!-- unicorn -->
+    <item>&#x1f422;</item> <!-- turtle -->
+    <item>&#x2615;</item> <!-- hot beverage -->
+    <item>&#x1f37a;</item> <!-- beer mug -->
+    <item>&#x1f37f;</item> <!-- popcorn -->
+    <item>&#x1F32E;</item> <!-- taco -->
+    <item>&#x1f5DD;</item> <!-- key -->
+    <item>&#x1f339;</item> <!-- rose -->
+    <item>&#x1F4B0;</item> <!-- money bag -->
+    <item>&#x1F682;</item> <!-- bicycle -->
+  </string-array>
+
 </resources>
