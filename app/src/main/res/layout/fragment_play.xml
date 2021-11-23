@@ -19,32 +19,21 @@
     app:layout_constraintEnd_toEndOf="parent"
     tools:listitem="@layout/item_guess"/>
 
-  <LinearLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/guess_container"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
+    app:layout_constraintEnd_toStartOf="@id/submit"/>
 
-    <EditText
-      android:id="@+id/guess"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:inputType="text"
-      android:hint="@string/guess_hint"
-      android:layout_margin="@dimen/half_dynamic_spacing"
-      android:layout_weight="1"
-      tools:ignore="Autofill"/>
-
-    <Button
-      android:id="@+id/submit"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/half_dynamic_spacing"
-      android:text="@string/submit"/>
-
-  </LinearLayout>
-
+  <Button
+    android:id="@+id/submit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_dynamic_spacing"
+    android:text="@string/submit"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

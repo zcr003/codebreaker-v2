@@ -7,4 +7,7 @@
   <dimen name="fab_margin">16dp</dimen>
   <dimen name="half_dynamic_spacing">8dp</dimen>
   <dimen name="half_static_spacing">4dp</dimen>
+  <dimen name="half_compact_spacing">2dp</dimen>
+  <dimen name="max_guess_container_height">80dp</dimen>
+  <dimen name="base_emoji_size">32sp</dimen>
 </resources>
