@@ -5,7 +5,89 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:paddingTop="@dimen/half_dynamic_spacing"
   tools:context=".controller.ScoresFragment">
+
+  <TextView
+    android:id="@+id/code_length_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/code_length_label"
+    android:textStyle="bold"
+    android:labelFor="@id/code_length"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="@id/code_length"/>
+
+  <SeekBar
+    android:id="@+id/code_length"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_dynamic_spacing"
+    android:min="@integer/code_length_pref_min"
+    android:max="@integer/code_length_pref_max"
+    android:progress="@integer/code_length_pref_default"
+    app:layout_constraintTop_toBottomOf="@id/code_length_label"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/code_length_display"
+    app:layout_constraintHorizontal_weight="4"/>
+
+  <TextView
+    android:id="@+id/code_length_display"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    app:layout_constraintTop_toTopOf="@id/code_length"
+    app:layout_constraintBottom_toBottomOf="@id/code_length"
+    app:layout_constraintStart_toEndOf="@id/code_length"
+    app:layout_constraintEnd_toStartOf="@id/pool_size"
+    app:layout_constraintHorizontal_weight="1"
+    tools:text="3"/>
+
+  <TextView
+    android:id="@+id/pool_size_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/pool_size_label"
+    android:textStyle="bold"
+    android:labelFor="@id/pool_size"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="@id/pool_size"/>
+
+  <SeekBar
+    android:id="@+id/pool_size"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_dynamic_spacing"
+    android:min="@integer/pool_size_pref_min"
+    android:max="@integer/pool_size_pref_max"
+    android:progress="@integer/pool_size_pref_default"
+    app:layout_constraintTop_toBottomOf="@id/pool_size_label"
+    app:layout_constraintStart_toEndOf="@id/code_length_display"
+    app:layout_constraintEnd_toStartOf="@id/pool_size_display"
+    app:layout_constraintHorizontal_weight="4"/>
+
+  <TextView
+    android:id="@+id/pool_size_display"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    app:layout_constraintTop_toTopOf="@id/pool_size"
+    app:layout_constraintBottom_toBottomOf="@id/pool_size"
+    app:layout_constraintStart_toEndOf="@id/pool_size"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_weight="1"
+    tools:text="3"/>
+
+  <include
+    android:id="@+id/header"
+    layout="@layout/header_scores"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/code_length"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/games"
@@ -13,7 +95,7 @@
     android:layout_height="0dp"
     android:orientation="vertical"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/header"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

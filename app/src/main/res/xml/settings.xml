@@ -10,7 +10,8 @@
     android:defaultValue="@integer/code_length_pref_default"
     app:seekBarIncrement="@integer/code_length_pref_increment"
     app:showSeekBarValue="true"
-    android:title="@string/code_length_pref_title"/>
+    android:title="@string/code_length_pref_title"
+    android:icon="@drawable/ic_arrow_left_right"/>
 
   <SeekBarPreference
     android:key="@string/pool_size_pref_key"
@@ -19,6 +20,7 @@
     android:defaultValue="@integer/pool_size_pref_default"
     app:seekBarIncrement="@integer/pool_size_pref_increment"
     app:showSeekBarValue="true"
-    android:title="@string/pool_size_pref_title"/>
+    android:title="@string/pool_size_pref_title"
+    android:icon="@drawable/ic_encryption"/>
 
 </PreferenceScreen>

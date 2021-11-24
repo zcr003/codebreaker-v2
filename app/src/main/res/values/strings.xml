@@ -26,6 +26,15 @@
   <string name="code_length_pref_key">code_length_pref</string>
   <string name="pool_size_pref_key">pool_size_pref</string>
   <string name="pool_size_pref_title">Pool size</string>
+  <string name="code_length_label">Code length</string>
+  <string name="pool_size_label">Pool size</string>
+
+  <string name="date_completed_header">Date completed</string>
+  <string name="guesses_header_unselected">Guesses</string>
+  <string name="time_header_unselected">Time</string>
+
+  <string name="guesses_header_selected"><u>Guesses</u></string>
+  <string name="time_header_selected"><u>Time</u></string>
 
   <string-array name="emojis">
     <item>&#x1f600;</item> <!-- grinning face -->
