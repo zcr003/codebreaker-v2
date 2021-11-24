@@ -1,0 +1,10 @@
+edu.cnm.deepdive.codebreaker
+edu.cnm.deepdive.codebreaker.adapter
+edu.cnm.deepdive.codebreaker.controller
+edu.cnm.deepdive.codebreaker.controller.ui.slideshow
+edu.cnm.deepdive.codebreaker.model.dao
+edu.cnm.deepdive.codebreaker.model.entity
+edu.cnm.deepdive.codebreaker.model.pojo
+edu.cnm.deepdive.codebreaker.model.view
+edu.cnm.deepdive.codebreaker.service
+edu.cnm.deepdive.codebreaker.viewmodel
