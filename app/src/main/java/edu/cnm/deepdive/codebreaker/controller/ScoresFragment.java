@@ -12,32 +12,22 @@ import androidx.lifecycle.ViewModelProvider;
 import edu.cnm.deepdive.codebreaker.R;
 import edu.cnm.deepdive.codebreaker.adapter.GameSummaryAdapter;
 import edu.cnm.deepdive.codebreaker.databinding.FragmentScoresBinding;
-import edu.cnm.deepdive.codebreaker.model.view.GameSummary;
 import edu.cnm.deepdive.codebreaker.viewmodel.ScoresViewModel;
-import java.util.List;
 import java.util.function.BiConsumer;
 
-public class ScoresFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+public class ScoresFragment extends Fragment {
 
   private ScoresViewModel viewModel;
   private FragmentScoresBinding binding;
-  private BiConsumer<Integer, Boolean> codeLengthUpdater;
-  private BiConsumer<Integer, Boolean> poolSizeUpdater;
-  private BiConsumer<Boolean, Boolean> sortedByTimeUpdater;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
     binding = FragmentScoresBinding.inflate(inflater, container, false);
-    // TODO Add onClickListener to column headers. Listeners should invoke the set methods in
-    //  ScoresViewModel to force a refresh of the query.
-    // TODO Add onItemSelectedListener to spinner. Listener will invoke set methods in
-    //  ScoresViewModel to force a refresh of the query.
-    // TODO Populate spinners, using min and max code length & pool size integer resources.
-    setupParameterChangeConsumers();
-    binding.codeLength.setTag(codeLengthUpdater);
-    binding.poolSize.setTag(poolSizeUpdater);
-    binding.codeLength.setOnSeekBarChangeListener(this);
-    binding.poolSize.setOnSeekBarChangeListener(this);
+    binding.codeLength.setOnSeekBarChangeListener(
+        (SimpleChangeListener) this::handleCodeLengthChange);
+    binding.poolSize.setOnSeekBarChangeListener((SimpleChangeListener) this::handlePoolSizeChange);
+    binding.header.time.setOnClickListener((v) -> handleSortedByTimeChange(true, true));
+    binding.header.guesses.setOnClickListener((v) -> handleSortedByTimeChange(false, true));
     return binding.getRoot();
   }
 
@@ -53,13 +43,15 @@ public class ScoresFragment extends Fragment implements SeekBar.OnSeekBarChangeL
         });
     viewModel
         .getCodeLength()
-        .observe(getViewLifecycleOwner(), (codeLength) -> {/* TODO Set value of spinner. */});
+        .observe(getViewLifecycleOwner(),
+            (codeLength) -> binding.codeLength.setProgress(codeLength));
     viewModel
         .getPoolSize()
-        .observe(getViewLifecycleOwner(), (poolSize) -> {/* TODO Set value of spinner. */});
+        .observe(getViewLifecycleOwner(), (poolSize) -> binding.poolSize.setProgress(poolSize));
     viewModel
         .getSortedByTime()
-        .observe(getViewLifecycleOwner(), (sortedByTime) -> {/* TODO Update styling & listeners on column headers. */});
+        .observe(getViewLifecycleOwner(),
+            (sortedByTime) -> handleSortedByTimeChange(sortedByTime, false));
   }
 
   @Override
@@ -68,44 +60,43 @@ public class ScoresFragment extends Fragment implements SeekBar.OnSeekBarChangeL
     binding = null;
   }
 
-  private void setupParameterChangeConsumers() {
-    codeLengthUpdater = (value, fromUser) -> {
-      binding.codeLengthDisplay.setText(String.valueOf(value));
-      if (fromUser) {
-        viewModel.setCodeLength(value);
-      }
-    };
-    poolSizeUpdater = (value, fromUser) -> {
-      binding.poolSizeDisplay.setText(String.valueOf(value));
-      if (fromUser) {
-        viewModel.setPoolSize(value);
-      }
-    };
-    sortedByTimeUpdater = (sortedByTime, fromUser) -> {
-      if (sortedByTime) {
-        binding.header.time.setText(R.string.time_header_selected);
-        binding.header.guesses.setText(R.string.guesses_header_unselected);
-      } else {
-        binding.header.time.setText(R.string.time_header_unselected);
-        binding.header.guesses.setText(R.string.guesses_header_selected);
-      }
-      if (fromUser) {
-        viewModel.setSortedByTime(sortedByTime);
-      }
-    };
+  private void handleCodeLengthChange(View view, int value, boolean fromUser) {
+    binding.codeLengthDisplay.setText(String.valueOf(value));
+    if (fromUser) {
+      viewModel.setCodeLength(value);
+    }
   }
 
-  @Override
-  public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-    ((BiConsumer<Integer, Boolean>) seekBar.getTag()).accept(progress, fromUser);
+  private void handlePoolSizeChange(View view, int value, boolean fromUser) {
+    binding.poolSizeDisplay.setText(String.valueOf(value));
+    if (fromUser) {
+      viewModel.setPoolSize(value);
+    }
   }
 
-  @Override
-  public void onStartTrackingTouch(SeekBar seekBar) {
+  private void handleSortedByTimeChange(boolean sortedByTime, boolean fromUser) {
+    if (sortedByTime) {
+      binding.header.time.setText(R.string.time_header_selected);
+      binding.header.guesses.setText(R.string.guesses_header_unselected);
+    } else {
+      binding.header.time.setText(R.string.time_header_unselected);
+      binding.header.guesses.setText(R.string.guesses_header_selected);
+    }
+    if (fromUser) {
+      viewModel.setSortedByTime(sortedByTime);
+    }
   }
 
-  @Override
-  public void onStopTrackingTouch(SeekBar seekBar) {
-  }
+  @FunctionalInterface
+  private interface SimpleChangeListener extends SeekBar.OnSeekBarChangeListener {
 
+    @Override
+    default void onStartTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    default void onStopTrackingTouch(SeekBar seekBar) {
+    }
+
+  }
 }

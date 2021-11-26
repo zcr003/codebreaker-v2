@@ -15,7 +15,7 @@
     android:layout_weight="3"
     android:textAlignment="viewStart"
     android:textStyle="bold"
-    android:text="@string/date_completed_header"/>
+    android:text="@string/created_header"/>
 
   <TextView
     android:id="@+id/guesses"
