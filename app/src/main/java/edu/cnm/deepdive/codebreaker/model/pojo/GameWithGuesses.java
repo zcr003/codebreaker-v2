@@ -3,6 +3,7 @@ package edu.cnm.deepdive.codebreaker.model.pojo;
 import androidx.room.Relation;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.model.entity.Guess;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GameWithGuesses extends Game {
@@ -12,9 +13,8 @@ public class GameWithGuesses extends Game {
       entityColumn = "game_id",
       parentColumn = "game_id"
   )
-  private List<Guess> guesses;
+  private List<Guess> guesses = new LinkedList<>();
 
-  @Override
   public List<Guess> getGuesses() {
     return guesses;
   }

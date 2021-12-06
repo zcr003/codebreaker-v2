@@ -21,6 +21,7 @@ import edu.cnm.deepdive.codebreaker.adapter.GuessItemAdapter;
 import edu.cnm.deepdive.codebreaker.databinding.FragmentPlayBinding;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.model.entity.Guess;
+import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
 import edu.cnm.deepdive.codebreaker.viewmodel.PlayViewModel;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class PlayFragment extends Fragment {
     viewModel.submitGuess(builder.toString());
   }
 
-  private void update(Game game) {
+  private void update(GameWithGuesses game) {
     codeLength = game.getLength();
     String pool = game.getPool();
     List<Guess> guesses = game.getGuesses();

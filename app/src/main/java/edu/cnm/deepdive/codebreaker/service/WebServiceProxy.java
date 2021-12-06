@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.codebreaker.BuildConfig;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.model.entity.Guess;
+import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
 import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -20,7 +21,7 @@ import retrofit2.http.Path;
 public interface WebServiceProxy {
 
   @POST("codes")
-  Single<Game> startGame(@Body Game game);
+  Single<GameWithGuesses> startGame(@Body Game game);
 
   @POST("codes/{gameId}/guesses")
   Single<Guess> submitGuess(@Body Guess guess, @Path("gameId") String gameId);

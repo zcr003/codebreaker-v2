@@ -49,9 +49,6 @@ public class Game {
   @Ignore
   private boolean solved;
 
-  @Ignore
-  private final List<Guess> guesses = new LinkedList<>();
-
   public long getId() {
     return id;
   }
@@ -109,10 +106,6 @@ public class Game {
 
   public void setSolved(boolean solved) {
     this.solved = solved;
-  }
-
-  public List<Guess> getGuesses() {
-    return guesses;
   }
 
 }

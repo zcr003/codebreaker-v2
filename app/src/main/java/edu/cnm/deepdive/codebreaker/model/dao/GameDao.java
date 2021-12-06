@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
@@ -46,12 +47,15 @@ public interface GameDao {
   @Query("SELECT * FROM game ORDER BY created DESC")
   LiveData<List<Game>> selectAll();
 
+  @Transaction
   @Query("SELECT * FROM game WHERE game_id = :gameId")
   LiveData<GameWithGuesses> select(long gameId);
 
+  @Transaction
   @Query("SELECT * FROM game_summary WHERE pool_size = :poolSize AND length = :length ORDER BY guess_count ASC, total_time ASC")
   LiveData<List<GameSummary>> selectSummariesByGuessCount(int poolSize, int length);
 
+  @Transaction
   @Query("SELECT * FROM game_summary WHERE pool_size = :poolSize AND length = :length ORDER BY total_time ASC, guess_count ASC")
   LiveData<List<GameSummary>> selectSummariesByTotalTime(int poolSize, int length);
 

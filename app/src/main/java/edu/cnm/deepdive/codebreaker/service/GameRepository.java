@@ -10,6 +10,7 @@ import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
 import edu.cnm.deepdive.codebreaker.model.view.GameSummary;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameRepository {
@@ -25,7 +26,7 @@ public class GameRepository {
     guessDao = database.getGuessDao();
   }
 
-  public Single<Game> save(Game game) {
+  public Single<GameWithGuesses> save(GameWithGuesses game) {
     return proxy
         .startGame(game)
         .map((startedGame) -> {
@@ -39,7 +40,7 @@ public class GameRepository {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Game> save(Game game, Guess guess) {
+  public Single<GameWithGuesses> save(GameWithGuesses game, Guess guess) {
     return proxy
         .submitGuess(guess, game.getServiceKey())
         .map((processedGuess) -> {
@@ -64,7 +65,7 @@ public class GameRepository {
   }
 
   @NonNull
-  private Single<Game> insertGameWithGuesses(Game game) {
+  private Single<GameWithGuesses> insertGameWithGuesses(GameWithGuesses game) {
     return (game.isSolved())
         ? gameDao
         .insert(game)
@@ -77,8 +78,14 @@ public class GameRepository {
         })
         .flatMap((g2) -> guessDao
             .insert(g2.getGuesses())
-            // TODO invoke Guess.setId for all of the guesses.
-            .map((ids) -> g2))
+            .map((ids) -> {
+              Iterator<Long> idIterator = ids.iterator();
+              Iterator<Guess> guessIterator = g2.getGuesses().iterator();
+              while (idIterator.hasNext() && guessIterator.hasNext()) {
+                guessIterator.next().setId(idIterator.next());
+              }
+              return g2;
+            }))
         : Single.just(game);
   }
 

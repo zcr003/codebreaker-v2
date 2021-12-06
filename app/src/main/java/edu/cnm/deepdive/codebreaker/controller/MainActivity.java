@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.ui.AppBarConfiguration.Builder;
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView = binding.navView;
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
-    appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_play, R.id.nav_scores)
-        .setDrawerLayout(drawer)
+    appBarConfiguration = new Builder(R.id.nav_play, R.id.nav_scores)
+        .setOpenableLayout(drawer)
         .build();
     navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

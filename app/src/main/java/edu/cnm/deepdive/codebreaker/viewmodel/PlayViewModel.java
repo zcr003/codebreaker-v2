@@ -14,13 +14,14 @@ import androidx.preference.PreferenceManager;
 import edu.cnm.deepdive.codebreaker.R;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.model.entity.Guess;
+import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
 import edu.cnm.deepdive.codebreaker.service.GameRepository;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class PlayViewModel extends AndroidViewModel implements DefaultLifecycleObserver {
 
   private final GameRepository gameRepository;
-  private final MutableLiveData<Game> game;
+  private final MutableLiveData<GameWithGuesses> game;
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
   private final SharedPreferences preferences;
@@ -47,7 +48,7 @@ public class PlayViewModel extends AndroidViewModel implements DefaultLifecycleO
     startGame();
   }
 
-  public LiveData<Game> getGame() {
+  public LiveData<GameWithGuesses> getGame() {
     return game;
   }
 
@@ -63,7 +64,7 @@ public class PlayViewModel extends AndroidViewModel implements DefaultLifecycleO
         .codePoints()
         .limit(poolSize)
         .toArray();
-    Game game = new Game();
+    GameWithGuesses game = new GameWithGuesses();
     game.setPool(new String(poolCodePoints, 0, poolCodePoints.length));
     game.setLength(codeLength);
     pending.add(
