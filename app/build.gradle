@@ -35,8 +35,8 @@ android {
 
         buildConfigField 'String', 'BASE_URL', quoted(getLocalProperty('base_url'))
 // TODO Uncomment following lines after branching for capstone client.
-//        buildConfigField 'String', 'CLIENT_ID', quoted(
-//                getProperty("$projectDir/../../../services/codebreaker.properties", 'client_id'))
+        buildConfigField 'String', 'CLIENT_ID', quoted(
+                getProperty("$projectDir/../../../services/codebreaker.properties", 'client_id'))
 
         javaCompileOptions {
             annotationProcessorOptions {

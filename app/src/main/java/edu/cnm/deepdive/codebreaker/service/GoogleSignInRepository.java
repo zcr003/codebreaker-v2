@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import edu.cnm.deepdive.codebreaker.BuildConfig;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
@@ -30,7 +31,7 @@ public class GoogleSignInRepository {
         .requestId()
         .requestProfile()
         // TODO Uncomment following line after branching for example capstone client.
-//        .requestIdToken(BuildConfig.CLIENT_ID)
+        .requestIdToken(BuildConfig.CLIENT_ID)
         .build();
     client = GoogleSignIn.getClient(context, options);
   }
@@ -48,7 +49,7 @@ public class GoogleSignInRepository {
         .create((SingleEmitter<GoogleSignInAccount> emitter) ->
             client
                 .silentSignIn()
-//                .addOnSuccessListener(this::logAccount)
+                .addOnSuccessListener(this::logAccount)
                 .addOnSuccessListener(emitter::onSuccess)
                 .addOnFailureListener(emitter::onError)
         )
@@ -71,7 +72,7 @@ public class GoogleSignInRepository {
             Task<GoogleSignInAccount> task =
                 GoogleSignIn.getSignedInAccountFromIntent(result.getData());
             GoogleSignInAccount account = task.getResult(ApiException.class);
-//            logAccount(account);
+            logAccount(account);
             emitter.onSuccess(account);
           } catch (ApiException e) {
             emitter.onError(e);
