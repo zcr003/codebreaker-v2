@@ -20,11 +20,13 @@ import retrofit2.http.Path;
 
 public interface WebServiceProxy {
 
-  @POST("codes")
-  Single<GameWithGuesses> startGame(@Body Game game);
+  @POST("games")
+  Single<GameWithGuesses> startGame(@Body Game game,
+      @Header("Authorization") String bearerToken);
 
-  @POST("codes/{gameId}/guesses")
-  Single<Guess> submitGuess(@Body Guess guess, @Path("gameId") String gameId);
+  @POST("games/{gameId}/guesses")
+  Single<Guess> submitGuess(@Body Guess guess, @Path("gameId") String gameId,
+      @Header("Authorization") String bearerToken);
 
   static WebServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;

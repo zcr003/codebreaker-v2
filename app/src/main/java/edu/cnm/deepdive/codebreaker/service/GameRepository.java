@@ -18,17 +18,20 @@ public class GameRepository {
   private final WebServiceProxy proxy;
   private final GameDao gameDao;
   private final GuessDao guessDao;
+  private final GoogleSignInRepository signInRepository;
 
   public GameRepository() {
     proxy = WebServiceProxy.getInstance();
     CodebreakerDatabase database = CodebreakerDatabase.getInstance();
     gameDao = database.getGameDao();
     guessDao = database.getGuessDao();
+    signInRepository = GoogleSignInRepository.getInstance();
   }
 
   public Single<GameWithGuesses> save(GameWithGuesses game) {
-    return proxy
-        .startGame(game)
+    return signInRepository
+        .refreshBearerToken()
+        .flatMap((token) -> proxy.startGame(game, token))
         .map((startedGame) -> {
           int poolSize = (int) startedGame
               .getPool()
@@ -41,8 +44,10 @@ public class GameRepository {
   }
 
   public Single<GameWithGuesses> save(GameWithGuesses game, Guess guess) {
-    return proxy
-        .submitGuess(guess, game.getServiceKey())
+    return signInRepository
+        .refreshBearerToken()
+        .flatMap((token) -> proxy.submitGuess(
+            guess, game.getServiceKey(), token))
         .map((processedGuess) -> {
           game.getGuesses().add(processedGuess);
           game.setSolved(processedGuess.isSolution());
