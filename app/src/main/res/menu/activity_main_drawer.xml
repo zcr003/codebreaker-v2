@@ -14,6 +14,10 @@
       android:id="@+id/nav_scores"
       android:icon="@drawable/ic_filter_list"
       android:title="@string/menu_scores"/>
+    <item
+      android:id="@+id/nav_rankings"
+      android:icon="@drawable/ic_filter_list"
+      android:title="@string/menu_rankings"/>
   </group>
 
   <group

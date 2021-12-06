@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import edu.cnm.deepdive.codebreaker.model.dao.GameDao;
 import edu.cnm.deepdive.codebreaker.model.dao.GuessDao;
-import edu.cnm.deepdive.codebreaker.model.entity.Game;
+import edu.cnm.deepdive.codebreaker.model.dto.RankedUser;
 import edu.cnm.deepdive.codebreaker.model.entity.Guess;
 import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
 import edu.cnm.deepdive.codebreaker.model.view.GameSummary;
@@ -92,6 +92,19 @@ public class GameRepository {
               return g2;
             }))
         : Single.just(game);
+  }
+
+  public Single<List<RankedUser>> getRankings(int length, int poolSize, RankingOrder order) {
+    return signInRepository
+        .refreshBearerToken()
+        .flatMap((token) -> proxy.getRankings(
+            length, poolSize, order.toString().toLowerCase(), token))
+        .subscribeOn(Schedulers.io());
+
+  }
+
+  public enum RankingOrder {
+    COUNT, TIME
   }
 
 }

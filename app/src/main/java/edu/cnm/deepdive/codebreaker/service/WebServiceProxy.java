@@ -3,10 +3,12 @@ package edu.cnm.deepdive.codebreaker.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.codebreaker.BuildConfig;
+import edu.cnm.deepdive.codebreaker.model.dto.RankedUser;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.model.entity.Guess;
 import edu.cnm.deepdive.codebreaker.model.pojo.GameWithGuesses;
 import io.reactivex.Single;
+import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
@@ -14,9 +16,11 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface WebServiceProxy {
 
@@ -27,6 +31,12 @@ public interface WebServiceProxy {
   @POST("games/{gameId}/guesses")
   Single<Guess> submitGuess(@Body Guess guess, @Path("gameId") String gameId,
       @Header("Authorization") String bearerToken);
+
+  @GET("users/ranked")
+  Single<List<RankedUser>> getRankings(
+      @Query("length") int length, @Query("poolSize") int poolSize,
+      @Query("order") String order, @Header("Authorization") String bearerToken);
+
 
   static WebServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;
