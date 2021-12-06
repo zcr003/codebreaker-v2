@@ -8,15 +8,30 @@
   android:padding="@dimen/half_static_spacing">
 
   <TextView
+    android:id="@+id/guess_number"
+    android:layout_width="45sp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/half_dynamic_spacing"
+    android:layout_marginTop="@dimen/half_dynamic_spacing"
+    android:layout_marginBottom="@dimen/half_dynamic_spacing"
+    android:layout_marginEnd="@dimen/half_static_spacing"
+    style="@style/GuessNumber"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    tools:text="1."/>
+
+  <TextView
     android:id="@+id/text"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/half_dynamic_spacing"
-    style="@style/GuessItem"
+    style="@style/GuessText"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintStart_toEndOf="@id/guess_number"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toStartOf="@id/results_container"
+    app:layout_constraintHorizontal_weight="8"
     tools:text="&#x1f600;&#x1f600;&#x1f600;&#x1f600;&#x1f600;&#x1f600;"/>
 
   <ImageView

@@ -13,7 +13,13 @@
     <item name="android:includeFontPadding">false</item>
   </style>
 
-  <style name="GuessItem">
+  <style name="GuessNumber">
+    <item name="android:textSize">@dimen/guess_number_size</item>
+    <item name="android:includeFontPadding">false</item>
+    <item name="android:textAlignment">viewEnd</item>
+  </style>
+
+  <style name="GuessText">
     <item name="android:textSize">@dimen/base_emoji_size</item>
     <item name="android:includeFontPadding">false</item>
   </style>
