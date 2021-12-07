@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="horizontal"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:paddingHorizontal="@dimen/half_dynamic_spacing"
+  android:paddingVertical="@dimen/half_static_spacing">
+
+  <TextView
+    android:id="@+id/display_name"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:textAlignment="viewStart"
+    tools:text="GratephulD3AD"
+    android:layout_weight="3"/>
+
+  <TextView
+    android:id="@+id/guess_count"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:layout_weight="2"
+    android:textAlignment="center"
+    tools:text="15"/>
+
+  <TextView
+    android:id="@+id/total_time"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:layout_weight="2"
+    android:textAlignment="center"
+    tools:text="12:30"/>
+
+</LinearLayout>

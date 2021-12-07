@@ -15,9 +15,9 @@
       android:icon="@drawable/ic_filter_list"
       android:title="@string/menu_scores"/>
     <item
-      android:id="@+id/nav_rankings"
+      android:id="@+id/nav_ranks"
       android:icon="@drawable/ic_filter_list"
-      android:title="@string/menu_rankings"/>
+      android:title="@string/menu_ranks"/>
   </group>
 
   <group
