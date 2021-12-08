@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:paddingHorizontal="@dimen/half_dynamic_spacing"
+  android:paddingVertical="@dimen/half_static_spacing"
+  android:layout_marginTop="@dimen/half_dynamic_spacing">
+
+  <TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:layout_weight="3"
+    android:textAlignment="viewStart"
+    android:textStyle="bold"
+    android:text="@string/display_name_header"/>
+
+  <TextView
+    android:id="@+id/guesses"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:layout_weight="2"
+    android:textAlignment="center"
+    android:textStyle="bold"
+    android:text="@string/guesses_header_unselected"
+    android:background="?android:selectableItemBackground"/>
+
+  <TextView
+    android:id="@+id/time"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_static_spacing"
+    android:layout_weight="2"
+    android:textAlignment="center"
+    android:textStyle="bold"
+    android:text="@string/time_header_unselected"
+    android:background="?android:selectableItemBackground"/>
+
+</LinearLayout>
