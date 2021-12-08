@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.codebreaker.controller;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,12 @@ public class ScoresFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
     binding = FragmentScoresBinding.inflate(inflater, container, false);
+    Resources resources = getResources();
+    binding.codeLengthDisplay.setText(String.valueOf(
+        resources.getInteger(R.integer.code_length_pref_default)));
+    binding.poolSizeDisplay.setText(String.valueOf(
+        resources.getInteger(R.integer.pool_size_pref_default)));
+
     binding.codeLength.setOnSeekBarChangeListener(
         (SimpleChangeListener) this::handleCodeLengthChange);
     binding.poolSize.setOnSeekBarChangeListener((SimpleChangeListener) this::handlePoolSizeChange);
